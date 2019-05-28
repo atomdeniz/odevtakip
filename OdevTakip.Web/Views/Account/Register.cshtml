@@ -1,0 +1,138 @@
+﻿@*@model OdevTakip.Data.Model.User
+
+    @{
+        Layout = null;
+    }
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Register</title>
+    </head>
+    <body>
+
+    <h4>User</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Register">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SchoolNumber" class="control-label"></label>
+                    <input asp-for="SchoolNumber" class="form-control" />
+                    <span asp-validation-for="SchoolNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    </body>
+    </html>*@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sign Up &middot; Elephant Template &middot; The fastest way to build Modern Admin APPS for any platform, browser, or device.</title>
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
+    <link rel="stylesheet" href="~/css/vendor.min.css">
+    <link rel="stylesheet" href="~/css/elephant.min.css">
+    <link rel="stylesheet" href="~/css/signup-3.min.css">
+</head>
+<body>
+    <div class="signup">
+        <div class="signup-body">
+            <a class="signup-brand" href="index-2.html">
+                <img class="img-responsive" src="~/img/logo.svg" alt="Elephant">
+            </a>
+            <h3 class="signup-heading">Sign up</h3>
+            <div class="signup-form">
+                @using (Html.BeginForm("Register", "Account", null, FormMethod.Post, true, new { data_toggle = "md-validator" }))
+                {
+
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="md-form-group md-label-floating">
+                                <input class="md-form-control" type="text" name="FirstName" spellcheck="false" data-msg-required="İsminiz gereklidir" required>
+                                <label class="md-control-label">Adınız</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="md-form-group md-label-floating">
+                                <input class="md-form-control" type="text" name="LastName" spellcheck="false" data-msg-required="Soyisminiz gereklidir" required>
+                                <label class="md-control-label">Soyadınız</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="md-form-group md-label-floating">
+                                <input class="md-form-control" type="email" name="Email" spellcheck="false" autocomplete="off" data-msg-required="Emailiniz gereklidir" required>
+                                <label class="md-control-label">Email</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="md-form-group md-label-floating">
+                                <input class="md-form-control" name="SchoolNumber" minlength="9" maxlength="9" data-msg-minlength="Öğrenci numarası 9 haneli olmalıdır" data-msg-maxlength="Öğrenci numarası 9 haneli olmalıdır" data-msg-required="Öğrenci numarası gereklidir" required>
+                                <label class="md-control-label">Öğrenci Numarası</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="md-form-group md-label-floating">
+                                <input class="md-form-control" type="password" name="Password" minlength="6" data-msg-minlength="Şifre 6 karakterli olmalıdır" data-msg-required="Şifreniz gereklidir" required>
+                                <label class="md-control-label">Şifre</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+                }
+            </div>
+        </div>
+        <div class="signup-footer">
+            Hesabınız var mı? <a href="login-3.html">Giriş Yap</a>
+        </div>
+    </div>
+    <script src="~/js/vendor.min.js"></script>
+    <script src="~/js/elephant.min.js"></script>
+
+</body>
+</html>
