@@ -1,0 +1,35 @@
+﻿@model List<OdevTakip.Data.Model.Lesson>
+@{ 
+    Layout = "";
+}
+<div class="row">
+    <div class="col-md-12">
+        
+        <div class="card">
+            <div class="card-header">
+               
+                <strong>Dersler</strong>
+            </div>
+            <div class="card-body" data-toggle="match-height" style="">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Ders Adı</th>
+                            <th>Toplam Öğrenci</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><a href="/Lesson/Index?id=@item.Id">@item.Name</a></td>
+                                <td>20</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

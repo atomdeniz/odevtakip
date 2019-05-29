@@ -9,7 +9,12 @@ namespace OdevTakip.Data
     public class OdevTakipContext : DbContext
     {
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Lesson> Lessons { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<StudentLesson> StudentLessons { get; set; }
+        public DbSet<Homework> Homeworks { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=localhost\SQLEXPRESS;Database=OdevTakipDB;Trusted_Connection=True;MultipleActiveResultSets=true");

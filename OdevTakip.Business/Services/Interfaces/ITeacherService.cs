@@ -5,8 +5,10 @@ using System.Text;
 
 namespace OdevTakip.Business.Services.Interfaces
 {
-    public interface IUserService
+    public interface ITeacherService
     {
-        void AddUser(User user);
+        void AddTeacher(Teacher user);
+
+        Teacher GetTeacherWithLogin(string Email, string Password);
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OdevTakip.Data;
 
 namespace OdevTakip.Data.Migrations
 {
     [DbContext(typeof(OdevTakipContext))]
-    partial class OdevTakipContextModelSnapshot : ModelSnapshot
+    [Migration("20190529213756_homeworkmigactive")]
+    partial class homeworkmigactive
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

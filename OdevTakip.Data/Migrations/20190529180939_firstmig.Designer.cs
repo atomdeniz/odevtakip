@@ -3,42 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OdevTakip.Data;
 
 namespace OdevTakip.Data.Migrations
 {
     [DbContext(typeof(OdevTakipContext))]
-    partial class OdevTakipContextModelSnapshot : ModelSnapshot
+    [Migration("20190529180939_firstmig")]
+    partial class firstmig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("OdevTakip.Data.Model.Homework", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Active");
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<int>("LessonId");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LessonId");
-
-                    b.ToTable("Homeworks");
-                });
 
             modelBuilder.Entity("OdevTakip.Data.Model.Lesson", b =>
                 {
@@ -54,7 +35,7 @@ namespace OdevTakip.Data.Migrations
 
                     b.Property<int>("TeacherId");
 
-                    b.Property<string>("Year");
+                    b.Property<int>("Year");
 
                     b.HasKey("Id");
 
@@ -124,14 +105,6 @@ namespace OdevTakip.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Teachers");
-                });
-
-            modelBuilder.Entity("OdevTakip.Data.Model.Homework", b =>
-                {
-                    b.HasOne("OdevTakip.Data.Model.Lesson", "Lesson")
-                        .WithMany("Homeworks")
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("OdevTakip.Data.Model.Lesson", b =>

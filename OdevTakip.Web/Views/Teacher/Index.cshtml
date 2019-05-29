@@ -1,0 +1,176 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .modal-backdrop {
+        position: inherit;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1040;
+        background-color: #000;
+    }
+</style>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="form-control-6">Yıl</label>
+            <div class="col-sm-3">
+                <select id="year" name="year" class="form-control">
+                    <option value="2019">2019-2020</option>
+                    <option value="2020">2020-2021</option>
+                    <option value="2021">2021-2022</option>
+                    <option value="2022">2022-2023</option>
+                    <option value="2023">2023-2024</option>
+                    <option value="2024">2024-2025</option>
+                    <option value="2025">2025-2026</option>
+                    <option value="2026">2026-2027</option>
+                    <option value="2027">2027-2028</option>
+                    <option value="2028">2028-2029</option>
+                    <option value="2029">2029-2030</option>
+                    <option value="2030">2030-2031</option>
+                    <option value="2031">2031-2032</option>
+                    <option value="2032">2032-2033</option>
+                    <option value="2033">2033-2034</option>
+                    <option value="2034">2034-2035</option>
+                    <option value="2035">2035-2036</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<br /><br />
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="form-control-6">Donem</label>
+            <div class="col-sm-3">
+                <select id="period" name="period" class="form-control">
+                    <option value="guz">Güz</option>
+                    <option value="bahar">Bahar</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<br /><br /><br />
+<button class="btn btn-primary" data-toggle="modal" data-target="#modalBounceIn" type="button">Yeni Ders Ekle</button><br /><br />
+                                                                                                                            <br />
+<div id=lessonlist></div>
+
+<div id="modalBounceIn" tabindex="-1" role="dialog" class="modal in">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceIn">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+
+            @using (Html.BeginForm("AddLesson", "Teacher", null, FormMethod.Post, true, new { }))
+            {
+
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="text-center">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="form-control-6">Dönem Seçiniz</label>
+                            <div class="col-sm-8">
+                                <select id="form-control-6" name="period" class="form-control">
+                                    <option value="guz">Güz</option>
+                                    <option value="bahar">Bahar</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br /><br /><br />
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="form-control-6">Yıl Seçiniz</label>
+                            <div class="col-sm-8">
+                                <select id="form-control-6" name="year" class="form-control">
+                                    <option value="2019">2019-2020</option>
+                                    <option value="2020">2020-2021</option>
+                                    <option value="2021">2021-2022</option>
+                                    <option value="2022">2022-2023</option>
+                                    <option value="2023">2023-2024</option>
+                                    <option value="2024">2024-2025</option>
+                                    <option value="2025">2025-2026</option>
+                                    <option value="2026">2026-2027</option>
+                                    <option value="2027">2027-2028</option>
+                                    <option value="2028">2028-2029</option>
+                                    <option value="2029">2029-2030</option>
+                                    <option value="2030">2030-2031</option>
+                                    <option value="2031">2031-2032</option>
+                                    <option value="2032">2032-2033</option>
+                                    <option value="2033">2033-2034</option>
+                                    <option value="2034">2034-2035</option>
+                                    <option value="2035">2035-2036</option>
+                                </select>
+                            </div>
+                        </div><br /><br />
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="form-control-6">Dersin Adı</label>
+                            <div class="col-sm-8">
+                                <input id="ders" class="form-control" name="lesson" type="text" required>
+                            </div>
+                        </div><br /><br />
+                        <div class="m-t-lg">
+                            <button class="btn btn-success" name="submit" type="submit">Kaydet</button>
+                            <button class="btn btn-default" data-dismiss="modal" type="button">İptal</button>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    $(function () {
+        $.ajax({
+            url: '/Teacher/_LessonList',
+            data: {
+                year: '2019',
+                period: 'guz'
+            },
+            success: function (data) {
+                $('#lessonlist').html(data);
+            }
+        });
+
+        $("#year, #period").change(function () {
+            var e = document.getElementById("year");
+            var year = e.options[e.selectedIndex].value;
+
+            var a = document.getElementById("period");
+            var period = a.options[a.selectedIndex].value;
+            console.log(year, period);
+            $.ajax({
+                url: '/Teacher/_LessonList',
+                data: {
+                    year: year,
+                    period: period
+                },
+                success: function (data) {
+                    $('#lessonlist').html(data);
+                }
+            });
+        });
+    });
+</script>
+

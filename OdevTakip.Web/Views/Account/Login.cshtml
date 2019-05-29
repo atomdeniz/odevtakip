@@ -20,45 +20,23 @@
             <a class="signup-brand" href="index-2.html">
                 <img class="img-responsive" src="~/img/logo.svg" alt="Elephant">
             </a>
-            <h3 class="signup-heading">Kayıt Ol</h3>
+            <h3 class="signup-heading">Giriş Yap</h3>
             <div class="signup-form">
-                @using (Html.BeginForm("Register", "Account", null, FormMethod.Post, true, new { data_toggle = "md-validator" }))
+                @using (Html.BeginForm("Login", "Account", null, FormMethod.Post, true, new { data_toggle = "md-validator" }))
                 {
 
-                    @Html.AntiForgeryToken()
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="md-form-group md-label-floating">
-                                <input class="md-form-control" type="text" name="FirstName" spellcheck="false" data-msg-required="İsminiz gereklidir" required>
-                                <label class="md-control-label">Adınız</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="md-form-group md-label-floating">
-                                <input class="md-form-control" type="text" name="LastName" spellcheck="false" data-msg-required="Soyisminiz gereklidir" required>
-                                <label class="md-control-label">Soyadınız</label>
-                            </div>
-                        </div>
-                    </div>
+                    @Html.AntiForgeryToken()          
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="md-form-group md-label-floating">
                                 <label class="control-label">Email</label><br />
-                                <label class="radio-inline"><input type="radio"  name="Optradio"  value="ogrenci" checked>Öğrenci</label>
+                                <label class="radio-inline"><input type="radio" name="Optradio" value="ogrenci" checked>Öğrenci</label>
                                 <label class="radio-inline"><input type="radio" value="ogretmen" name="Optradio">Öğretmen</label>
                                 <br /><br />
                                 <div class="input-group">
                                     <input id="form-control-17" class="form-control" name="Email" type="text" placeholder="eg. deniz.ozogul" required>
                                     <span class="input-group-addon" id="mailspan">@@ogr.duzce.edu.tr</span>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" id="ogrencinorow">
-                        <div class="col-sm-12">
-                            <div class="md-form-group md-label-floating">
-                                <input class="md-form-control" name="SchoolNumber" minlength="9" maxlength="9" data-msg-minlength="Öğrenci numarası 9 haneli olmalıdır" data-msg-maxlength="Öğrenci numarası 9 haneli olmalıdır" data-msg-required="Öğrenci numarası gereklidir" required>
-                                <label class="md-control-label">Öğrenci Numarası</label>
                             </div>
                         </div>
                     </div>
@@ -70,27 +48,24 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary btn-block" type="submit">Kayıt Ol</button>
+                    <button class="btn btn-primary btn-block" type="submit">Giriş Yap</button>
                 }
             </div>
         </div>
         <div class="signup-footer">
-            Hesabınız var mı? <a href="/Account/Login">Giriş Yap</a>
+            Hesabınız yok mu? <a href="/Account/Register">Kayıt Ol</a>
         </div>
     </div>
     <script src="~/js/vendor.min.js"></script>
     <script src="~/js/elephant.min.js"></script>
     <script>
 
-    
+
         $('input[type=radio][name=Optradio]').change(function () {
             if (this.value == 'ogretmen') {
-
-                document.getElementById("ogrencinorow").style.display = "none";
                 document.getElementById("mailspan").innerHTML = "@@duzce.edu.tr"
             }
             else if (this.value == 'ogrenci') {
-                document.getElementById("ogrencinorow").style.display = "block";
                 document.getElementById("mailspan").innerHTML = "@@ogr.duzce.edu.tr"
             }
         });
