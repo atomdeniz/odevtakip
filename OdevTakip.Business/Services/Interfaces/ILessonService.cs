@@ -14,5 +14,7 @@ namespace OdevTakip.Business.Services.Interfaces
         List<Homework> GetHomeworksForLesson(int lessonid);
 
         void AddHomework(int lessonid, string name);
+
+        List<Student> ListStudentForLesson(int lessonid);
     }
 }

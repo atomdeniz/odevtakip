@@ -9,6 +9,7 @@ namespace OdevTakip.Data.Model
         public Student()
         {
             StudentLessons = new List<StudentLesson>();
+            Files = new List<File>();
         }
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -17,8 +18,6 @@ namespace OdevTakip.Data.Model
         public string Password { get; set; }
         public string SchoolNumber { get; set; }
         public virtual ICollection<StudentLesson> StudentLessons { get; set; }
-
-        // Fluently bir şekilde ilişkileri kullanabilmemiz için tanımlıyoruz.
-        //public virtual ICollection<Article> Articles { get; set; }
+        public virtual ICollection<File> Files { get; set; }     
     }
 }

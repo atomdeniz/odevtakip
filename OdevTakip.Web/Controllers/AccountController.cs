@@ -55,7 +55,7 @@ namespace OdevTakip.Web.Controllers
                 teacher.CreatedDate = DateTime.Now;
                 _teacherService.AddTeacher(teacher);
             }
-            return View();
+            return RedirectToAction("Login");
         }
         public IActionResult Register()
         {

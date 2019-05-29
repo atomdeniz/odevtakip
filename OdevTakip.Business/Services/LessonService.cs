@@ -17,12 +17,14 @@ namespace OdevTakip.Business.Services
         private IUnitOfWork _uow;
         private IRepository<Lesson> _lessonRepository;
         private IRepository<Homework> _homeworkRepository;
+        private IRepository<Student> _studentRepository;
         public LessonService()
         {
             _dbContext = new OdevTakipContext();
             _uow = new OdevTakipUnitOfWork(_dbContext);
             _lessonRepository = new OdevTakipRepository<Lesson>(_dbContext);
             _homeworkRepository = new OdevTakipRepository<Homework>(_dbContext);
+            _studentRepository= new OdevTakipRepository<Student>(_dbContext);
         }
 
         public void AddLesson(Lesson lesson)
@@ -51,6 +53,11 @@ namespace OdevTakip.Business.Services
             _homeworkRepository.Add(homework);
             _uow.SaveChanges();
         }
+
+        public List<Student> ListStudentForLesson(int lessonid) {
+            return _studentRepository.GetAll(x => x.StudentLessons.All(y => y.LessonId == lessonid)).ToList();
+        }
+
 
     }
 }

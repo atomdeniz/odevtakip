@@ -6,6 +6,12 @@ namespace OdevTakip.Data.Model
 {
     public class Homework: ModelBase
     {
+
+        public Homework()
+        {
+            Files = new List<File>();
+        }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -15,5 +21,7 @@ namespace OdevTakip.Data.Model
         public int LessonId { get; set; }
 
         public bool Active { get; set; }
+
+        public virtual ICollection<File> Files { get; set; }
     }
 }

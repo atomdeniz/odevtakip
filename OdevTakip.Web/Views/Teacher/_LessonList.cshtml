@@ -1,13 +1,13 @@
 ﻿@model List<OdevTakip.Data.Model.Lesson>
-@{ 
+@{
     Layout = "";
 }
 <div class="row">
     <div class="col-md-12">
-        
+
         <div class="card">
             <div class="card-header">
-               
+
                 <strong>Dersler</strong>
             </div>
             <div class="card-body" data-toggle="match-height" style="">
@@ -15,15 +15,17 @@
                     <thead>
                         <tr>
                             <th>Ders Adı</th>
-                            <th>Toplam Öğrenci</th>
+                            <th>Ödevleri Listele</th>
+                            <th>Öğrenci Listele</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td><a href="/Lesson/Index?id=@item.Id">@item.Name</a></td>
-                                <td>20</td>
+                                <td>@item.Name</td>
+                                <td><a href="/Lesson/Index?id=@item.Id"><span class="icon icon-list"></span></a></td>
+                                <td><a href="/Lesson/Index?id=@item.Id"><span class="icon icon-list-alt"></span></a></td>
 
                             </tr>
                         }
