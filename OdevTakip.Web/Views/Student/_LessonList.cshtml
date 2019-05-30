@@ -15,18 +15,16 @@
                     <thead>
                         <tr>
                             <th>Ders Adı</th>
-                            <th>Ödevleri Listele</th>
-                            <th>Öğrenci Listele</th>
+                            <th>Ödev Listele</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>@item.Name</td>
-                                <td><a href="/Lesson/Index?id=@item.Id"><span class="icon icon-list"></span></a></td>
-                                <td><a href="/Student/ListStudentForLesson?id=@item.Id"><span class="icon icon-list-alt"></span></a></td>
-                            </tr>
+                        <tr>
+                            <td>@item.Name</td>
+                            <td><a href="/Student/ListHomeworksForStudent?id=@item.Id"><span class="icon icon-list"></span></a></td>
+                        </tr>
                         }
                     </tbody>
                 </table>

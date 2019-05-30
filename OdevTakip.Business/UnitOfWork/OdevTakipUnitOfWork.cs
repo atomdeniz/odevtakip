@@ -20,7 +20,7 @@ namespace OdevTakip.Business.UnitOfWork
             _dbContext = dbContext;
 
             // Buradan istediğiniz gibi EntityFramework'ü konfigure edebilirsiniz.
-            //_dbContext.Configuration.LazyLoadingEnabled = false;
+            //_dbContext.co.LazyLoadingEnabled = false;
             //_dbContext.Configuration.ValidateOnSaveEnabled = false;
             //_dbContext.Configuration.ProxyCreationEnabled = false;
         }

@@ -21,10 +21,24 @@ namespace OdevTakip.Web.Controllers
             return View();
         }
 
-        public IActionResult ListStudentForLesson(int lessonid)
+        public IActionResult ListStudentForLesson(int id)
         {
-            _lessonService.
-            return View();
+            ViewBag.Ders = _lessonService.GetById(id).Name;
+            return View(_lessonService.ListStudentForLesson(id));
+        }
+        public IActionResult _LessonList(string year, string period)
+        {
+            var studentId = User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier)
+               .Select(c => c.Value).SingleOrDefault();
+
+            ViewBag.StudentId = Convert.ToInt32(studentId);
+            var list = _lessonService.LessonListForTeacher(year, period, Convert.ToInt32(studentId));
+
+            return View(list);
+        }
+        public IActionResult ListHomeworksForStudent(int id)
+        {
+            return View(_lessonService.GetHomeworksForLesson(id));
         }
         //public IActionResult _LessonList(string year, string period)
         //{

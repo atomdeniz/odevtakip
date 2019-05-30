@@ -24,6 +24,11 @@ namespace OdevTakip.Web.Controllers
             _lessonService.AddHomework(id, name);
             return Ok();
         }
+        public IActionResult AddStudent(string number,int id)
+        {
+            _lessonService.AddStudentForLesson(number, id);
+            return Ok();
+        }
 
     }
 }

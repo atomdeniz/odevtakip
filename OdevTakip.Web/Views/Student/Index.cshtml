@@ -3,6 +3,105 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .modal-backdrop {
+        position: inherit;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1040;
+        background-color: #000;
+    }
+</style>
 
-<h1>Index</h1>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="form-control-6">Yıl</label>
+            <div class="col-sm-3">
+                <select id="year" name="year" class="form-control">
+                    <option value="2019">2019-2020</option>
+                    <option value="2020">2020-2021</option>
+                    <option value="2021">2021-2022</option>
+                    <option value="2022">2022-2023</option>
+                    <option value="2023">2023-2024</option>
+                    <option value="2024">2024-2025</option>
+                    <option value="2025">2025-2026</option>
+                    <option value="2026">2026-2027</option>
+                    <option value="2027">2027-2028</option>
+                    <option value="2028">2028-2029</option>
+                    <option value="2029">2029-2030</option>
+                    <option value="2030">2030-2031</option>
+                    <option value="2031">2031-2032</option>
+                    <option value="2032">2032-2033</option>
+                    <option value="2033">2033-2034</option>
+                    <option value="2034">2034-2035</option>
+                    <option value="2035">2035-2036</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<br /><br />
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="form-control-6">Donem</label>
+            <div class="col-sm-3">
+                <select id="period" name="period" class="form-control">
+                    <option value="guz">Güz</option>
+                    <option value="bahar">Bahar</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<br />
+<div id=lessonlist></div>
+
+
+<script>
+
+
+    $(function () {
+        $.ajax({
+            url: '/Student/_LessonList',
+            data: {
+                year: '2019',
+                period: 'guz'
+            },
+            success: function (data) {
+                $('#lessonlist').html(data);
+            }
+        });
+
+        $("#year, #period").change(function () {
+            var e = document.getElementById("year");
+            var year = e.options[e.selectedIndex].value;
+
+            var a = document.getElementById("period");
+            var period = a.options[a.selectedIndex].value;
+            console.log(year, period);
+            $.ajax({
+                url: '/Student/_LessonList',
+                data: {
+                    year: year,
+                    period: period
+                },
+                success: function (data) {
+                    $('#lessonlist').html(data);
+                }
+            });
+        });
+    });
+</script>
 
